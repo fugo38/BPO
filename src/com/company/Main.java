@@ -32,19 +32,19 @@ class Student{
         this.nummer = nummer;
     }
 
-    public Student inloggen() {
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Enter your username");
-        String username = scanner.nextLine();
-        System.out.println("Enter your Student Number");
-        int studentId = scanner.nextInt();
-        if (username.equals(this.naam) && studentId == this.nummer) {
-            answer = true;
-            System.out.println("test");
-        }
-        alleStudenten.add(new Student("Mehmet"));
-        return
-    }
+//    public Student inloggen() {
+//        Scanner scanner = new Scanner(System.in);
+//        System.out.println("Enter your username");
+//        String username = scanner.nextLine();
+//        System.out.println("Enter your Student Number");
+//        int studentId = scanner.nextInt();
+//        if (username.equals(this.naam) && studentId == this.nummer) {
+//            answer = true;
+//            System.out.println("test");
+//        }
+//        alleStudenten.add(new Student("Mehmet"));
+//        return
+//    }
 
     private static Integer uniekNummer(){
         int nummer = studentNummerId;
@@ -58,6 +58,6 @@ public class Main {
     public static void main(String[] args) {
         Student student1 = new Student("Mehmet");
         System.out.println(student1);
-        student1.inloggen();
+        //student1.inloggen();
     }
 }
