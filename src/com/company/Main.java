@@ -1,5 +1,6 @@
 package com.company;
 
+import javax.swing.*;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -32,32 +33,39 @@ class Student{
         this.nummer = nummer;
     }
 
-//    public Student inloggen() {
-//        Scanner scanner = new Scanner(System.in);
-//        System.out.println("Enter your username");
-//        String username = scanner.nextLine();
-//        System.out.println("Enter your Student Number");
-//        int studentId = scanner.nextInt();
-//        if (username.equals(this.naam) && studentId == this.nummer) {
-//            answer = true;
-//            System.out.println("test");
-//        }
-//        alleStudenten.add(new Student("Mehmet"));
-//        return
-//    }
+    public static ArrayList<Student> addStudent() {
+        alleStudenten.add(new Student("Mehmet"));
+        alleStudenten.add(new Student("Turan"));
+        alleStudenten.add(new Student("Furkan"));
+        alleStudenten.add(new Student("Nazih"));
+        return alleStudenten;
+    }
+
+    public void inloggen() {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Wat is uw naam?");
+        String username = sc.nextLine();
+//        System.out.println("Wat is uw student nummer?");
+//        int studentId = sc.nextInt();
+        for (int i=0; i < addStudent().size(); i++) {
+            if (alleStudenten.get(i).getNaam().equals(username)) {
+                System.out.println("ingelogged");
+            }
+        }
+    }
 
     private static Integer uniekNummer(){
         int nummer = studentNummerId;
         studentNummerId++;
         return nummer;
     }
-
 }
 
 public class Main {
     public static void main(String[] args) {
         Student student1 = new Student("Mehmet");
         System.out.println(student1);
-        //student1.inloggen();
+        student1.inloggen();
+
     }
 }
