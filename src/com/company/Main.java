@@ -165,17 +165,57 @@ class Student{
         }
     }
 
-    public static void inloggen() {
-        Scanner sc = new Scanner(System.in);
+    public static void studentMaken() {
+        Scanner scanner = new Scanner(System.in);
         System.out.println("Wat is uw naam?");
-        String username = sc.nextLine();
-//        System.out.println("Wat is uw student nummer?");
-//        int studentId = sc.nextInt();
-        for (int i=0; i < addStudent().size(); i++) {
-            if (alleStudenten.get(i).getNaam().equals(username)) {
-                System.out.println("ingelogged");
+        String naam = scanner.nextLine();
+        int uniekNummer = 21234567;
+        for (int i = 0; i < alleStudenten.size(); i++) {
+            uniekNummer = uniekNummer + 1;
+        }
+        alleStudenten.add(new Student(naam));
+        System.out.println("Student " + naam + " is aangemaakt");
+    }
+    public static void studentenLijst() {
+        for (int i = 0; i < alleStudenten.size(); i++) {
+            System.out.println(i + 1 + ". " + alleStudenten.get(i).naam + ", " + alleStudenten.get(i).nummer);
+        }
+    }
+
+    public static void delete() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Welke student wil je verwijderen?");
+        String delete = scanner.nextLine();
+        for (int i = 0; i < alleStudenten.size(); i++) {
+            if (alleStudenten.get(i).naam.equals(delete)) {
+                alleStudenten.remove(i);
             }
         }
+    }
+
+    public static void inloggen() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Wat is uw naam?");
+        String naam = scanner.nextLine();
+        System.out.println("Wat is uw studentennummer?");
+        int studentenNummer = scanner.nextInt();
+        boolean b = false;
+        do {
+            for (int i = 0; i < alleStudenten.size(); i++) {
+
+                if (naam.equalsIgnoreCase(alleStudenten.get(i).naam) && studentenNummer == alleStudenten.get(i).nummer) {
+                    System.out.println("U wordt ingelod");
+                    b = false;
+                } else {
+                    System.out.println("Ongeldige combinatie van naam en studentennummer");
+                    b = true;
+                    System.out.println("Wat is uw naam?");
+                    naam = scanner.next();
+                    System.out.println("Wat is uw studentennummer?");
+                    studentenNummer = scanner.nextInt();
+                }
+            }
+        } while(b);
     }
 
     private static Integer uniekNummer(){
@@ -187,22 +227,22 @@ class Student{
 
 public class Main {
     public static void main(String[] args) {
-//        Student student1 = new Student("Mehmet");
-//        Student student2 = new Student("Furkan");
-//        System.out.println(student1);
-//        System.out.println(student2);
-//        Student.printStudenten();
-        Examen examen1 = new Examen();
-        Examen examen2 = new Examen();
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("kies 1: examen1");
-        System.out.println("kies 2: examen2");
-        int keuze = scanner.nextInt();
-        if (keuze == 1){
-            examen1.printExamen1();
-        }
-        if (keuze == 2){
-            examen2.printExamen2();
-        }
+        Student.addStudent();
+        Student.printStudenten();
+//        Examen examen1 = new Examen();
+//        Examen examen2 = new Examen();
+//        Scanner scanner = new Scanner(System.in);
+//        System.out.println("kies 1: examen1");
+//        System.out.println("kies 2: examen2");
+//        int keuze = scanner.nextInt();
+//        if (keuze == 1){
+//            examen1.printExamen1();
+//        }
+//        if (keuze == 2){
+//            examen2.printExamen2();
+//        }
+//
+        Student.studentMaken();
+        Student.inloggen();
     }
 }
