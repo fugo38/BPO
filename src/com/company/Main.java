@@ -43,7 +43,7 @@ class Student{
             System.out.println("test");
         }
         alleStudenten.add(new Student("Mehmet"));
-        return
+        return;
     }
 
     private static Integer uniekNummer(){
