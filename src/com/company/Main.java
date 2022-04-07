@@ -14,9 +14,6 @@ class VraagAntwoord{
         this.antwoord = antwoord;
     }
 
-
-
-
     public String getVraag() {
         return vraag;
     }
