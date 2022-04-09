@@ -1,11 +1,16 @@
 package com.company;
 
-class Cijfer extends Main {
+import java.util.ArrayList;
+import java.util.Scanner;
+
+class Cijfer {
     private String naam;
     private int studentenNummer;
     private String examen;
     private double cijfer;
+    public ArrayList<Cijfer> Cijfers = new ArrayList<>();
 
+    Student student = new Student();
 
     public Cijfer(String naam, int studentenNummer, String examen, double cijfer) {
         this.naam = naam;
@@ -13,7 +18,12 @@ class Cijfer extends Main {
         this.examen = examen;
         this.cijfer = cijfer;
     }
-    public static void printCijfers() {
+
+    public Cijfer() {
+
+    }
+
+    public void printCijfers() {
         System.out.println(Cijfers);
     }
 
@@ -36,5 +46,33 @@ class Cijfer extends Main {
     public String toString() {
         return naam + " | " + studentenNummer + " | " + examen + " | " + cijfer + "\n";
 
+    }
+    public ArrayList<Cijfer> getCijfers() {
+        return Cijfers;
+    }
+
+    public void cijfersResultaat() {
+        Scanner scanner = new Scanner(System.in);
+        student.studentenLijst();
+        System.out.println("Naam");
+        String student = scanner.nextLine();
+        System.out.println("Studentennummer");
+        int studentenNummer = scanner.nextInt();
+        if (Cijfers.size() == 0) {
+            System.out.println("Student " + student + " heeft geen examens gemaakt");
+        }
+        for (int i = 0; i < Cijfers.size(); i++) {
+            if (studentenNummer != Cijfers.get(i).getStudentenNummer() || !student.equalsIgnoreCase(Cijfers.get(i).getNaam())) {
+                System.out.println("Student " + student + " heeft geen examens gemaakt");
+            } else if (studentenNummer == Cijfers.get(i).getStudentenNummer()) {
+                System.out.println("Student " + Cijfers.get(i).getNaam() + " | " + Cijfers.get(i).getStudentenNummer() + " heeft een " + Cijfers.get(i).getCijfer() + " gehaald voor " + Cijfers.get(i).getExamen());
+                if (Cijfers.get(i).getCijfer() >= 5.5) {
+                    System.out.println("Geslaagd");
+                } else if (Cijfers.get(i).getCijfer() < 5.5) {
+                    System.out.println("Gezakt");
+
+                }
+            }
+        }
     }
 }

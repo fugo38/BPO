@@ -2,12 +2,11 @@ package com.company;
 
 import java.util.ArrayList;
 
-class Menu extends Main {
-    protected static ArrayList<String> Menu = new ArrayList<>();
-    public Menu() {
-    }
+class Menu {
 
-    public static void addMenu() {
+    private ArrayList<String> Menu = new ArrayList<>();
+
+    public void addMenu() {
         Menu.add("Lijst met studenten");
         Menu.add("Lijst met examens");
         Menu.add("Nieuwe student inschrijven");
@@ -17,7 +16,7 @@ class Menu extends Main {
         Menu.add("Welke student heeft de meeste examens gehaald?");
         Menu.add("Exit");
     }
-    public static void printMenu(){
+    public void printMenu(){
         for (int i = 0; i < Menu.size(); i++) {
             System.out.println(i + 1 + ". " + Menu.get(i));
         }

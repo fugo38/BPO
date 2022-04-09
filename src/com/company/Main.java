@@ -1,67 +1,55 @@
 package com.company;
 
-import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
-import static com.company.Student.*;
-import static com.company.Examen.*;
-import static com.company.Cijfer.*;
-import static com.company.Menu.*;
+
 
 public class Main {
-    protected static String inlogNaam;
-    protected static int studentNummer;
-    protected static int commandnummer;
-    protected static boolean nogEenKeer;
-
-    protected static ArrayList<Examen> Examens = new ArrayList<>();
-    protected static ArrayList<Vraag> rekenVragen = new ArrayList<>();
-    protected static ArrayList<Vraag> wiskundeVragen = new ArrayList<>();
-    protected static ArrayList<Vraag> programmingVragen = new ArrayList<>();
-    protected static ArrayList<Cijfer> Cijfers = new ArrayList<>();
-    protected static ArrayList<Student> alleStudenten = new ArrayList<>();
-
     public static void main(String[] args) {
-        System.out.println();
-        addMenu();
-        addExamenLijst();
-        addRekenExamen();
-        addWiskundeExamen();
-        addProgrammingExamen();
-        nogEenKeer = true;
+        Student student = new Student();
+        Examen examen = new Examen();
+        Cijfer cijfer = new Cijfer();
+        Vraag vraag = new Vraag();
+        Menu menu = new Menu();
+        menu.addMenu();
+        vraag.addRekenExamenVragen();
+        vraag.addWiskundeExamenVragen();
+        vraag.addProgrammingExamenVragen();
+        examen.addExamenLijst();
+        boolean nogEenKeer = true;
         do {
             try {
                 Scanner scanner = new Scanner(System.in);
                 System.out.println("[Controle paneel]");
-                printMenu();
+                menu.printMenu();
                 System.out.println("Voer een commandnummer in");
-                commandnummer = scanner.nextInt();
+                int commandnummer = scanner.nextInt();
                 if (commandnummer == 1) {
                     System.out.println("Studentenlijst");
-                    studentenLijst();
+                    student.studentenLijst();
                 } else if (commandnummer == 2) {
                     System.out.println("Examenlijst");
-                    examenLijst();
+                    examen.examenLijst();
                     System.out.println("________________");
                 } else if (commandnummer == 3) {
                     System.out.println("Student inschrijven");
-                    studentInschrijven();
+                    student.studentInschrijven();
                     System.out.println("________________");
                 } else if (commandnummer == 4) {
                     System.out.println("Student verwijderen");
-                    studentVerwijderen();
+                    student.studentVerwijderen();
                     System.out.println("________________");
                 } else if (commandnummer == 5) {
                     System.out.println("Log in voordat je een examen kan afnemen");
-                    studentInloggen();
+                    examen.runExamen(examen);
                     System.out.println("________________");
                 } else if (commandnummer == 6) {
                     System.out.println("Welke student wil je opzoeken?");
-                    studentGeslaagd();
+                    cijfer.cijfersResultaat();
                     System.out.println("________________");
                 } else if (commandnummer == 7) {
                     System.out.println("Welke student heeft de meeste examens gehaald?");
-                    printCijfers();
+                    cijfer.printCijfers();
                     System.out.println("________________");
                 } else if (commandnummer == 8) {
                     System.out.println("Het systeem wordt afgesloten");

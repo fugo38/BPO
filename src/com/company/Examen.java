@@ -1,124 +1,108 @@
 package com.company;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
-class Examen extends Main {
-    private String examen;
+class Examen {
+    public int eindCijfer = 0;
+    private String Examen;
+    private ArrayList<Vraag> examenVragen;
+    public ArrayList<Examen> Examens = new ArrayList<>();
 
-    public Examen(String examen) {
-        this.examen = examen;
+    Student student = new Student();
+    Cijfer cijfer = new Cijfer();
+    Vraag vraag = new Vraag();
+
+    Examen rekenen = new Examen("Rekenen", vraag.rekenVragen);
+    Examen wiskunde = new Examen("Wiskunde",vraag.wiskundeVragen);
+    Examen programming = new Examen("Programming",vraag.programmingVragen);
+
+
+    public Examen(String examen, ArrayList<Vraag> examenVragen) {
+        this.Examen = examen;
+        this.examenVragen = examenVragen;
+    }
+
+    public Examen() {
+
     }
 
     public String getExamen() {
-        return examen;
+        return Examen;
 
     }
-
-    public static void addRekenExamen() {
-        rekenVragen.add(new Vraag("Vraag 1: wat is 5 + 5", "10"));
-        rekenVragen.add(new Vraag("Vraag 2: wat is 5 + 12", "17"));
-        rekenVragen.add(new Vraag("Vraag 3: wat is 51 + 5", "56"));
-        rekenVragen.add(new Vraag("Vraag 4: wat is 75 + 54", "129"));
-        rekenVragen.add(new Vraag("Vraag 5: wat is 53 + 50", "103"));
+    public ArrayList<Vraag> getExamenVragen() {
+        return examenVragen;
+    }
+    public ArrayList<Examen> getExamens() {
+        return Examens;
     }
 
-    public static void rekenExamen() {
+    public void runExamen(Examen examen) {
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Je moet minimaal 3 vragen goed hebben voor een voldoende");
-        String examen = "Rekenen";
-        double cijfer = 0;
-        for (Vraag vraag : rekenVragen) {
-            System.out.println(vraag.getVraag());
-            String antwoord = scanner.next();
-            if (vraag.getVraag().equals(vraag.getVraag()) && antwoord.equals(vraag.getAntwoord())) {
-                System.out.println("Goed antwoordt");
-                cijfer = cijfer + 2;
-            } else {
-                System.out.println("Fout antwoordt");
+        boolean unknown = true;
+        System.out.println("Wat is uw naam?");
+        String inlogNaam = scanner.nextLine();
+        System.out.println("Wat is uw studentennummer?");
+        int studentNummer = scanner.nextInt();
+        int i;
+        for (i = 0; i < student.alleStudenten.size(); i++) {
+            if (inlogNaam.equals(student.alleStudenten.get(i).getNaam()) && (studentNummer == student.alleStudenten.get(i).getNummer())) {
+                unknown = false;
+                System.out.println("U wordt ingelogd");
+                System.out.println("""
+                        Welke examen wilt u maken?
+                        Voer nummer in""");
+                int welkeExamen = scanner.nextInt();
+                if (welkeExamen == 1) {
+                    runExamen(rekenen);
+                } else if (welkeExamen == 2) {
+                    runExamen(wiskunde);
+                } else if (welkeExamen == 3) {
+                    runExamen(programming);
+                } else {
+                    System.out.println("Examen bestaat niet");
+                }
             }
         }
-        if (cijfer >= 5.5) {
-            System.out.println("Student " + inlogNaam + " is geslaagd voor " + examen);
-        } else {
-            System.out.println("Student " + inlogNaam + " is gezakt voor " + examen);
-
+        if (unknown) {
+            System.out.println("Ongeldige combinatie van naam en studentennummer!");
         }
-        System.out.println("Cijfer: " + cijfer);
-        Cijfers.add(new Cijfer(inlogNaam, studentNummer, examen, cijfer));
-    }
+        for (i = 0; i < Examens.size(); i++) {
+            if (!unknown && examen.equals(Examens.get(i))) {
+                System.out.println("Je moet minimaal 3 vragen goed hebben voor een voldoende");
+                for (i = 0; i < Examens.get(i).getExamenVragen().size(); i++) {
+                    System.out.println(vraag.getVraag());
+                    String antwoord = scanner.nextLine();
+                    if (examenVragen.get(i).getVraag().equals(examenVragen.get(i).getVraag()) && antwoord.equalsIgnoreCase(examenVragen.get(i).getAntwoord())) {
+                        System.out.println("Goed antwoordt");
+                        eindCijfer = eindCijfer + 2;
+                    } else {
+                        System.out.println("Fout antwoordt");
+                    }
+                }
+                if (eindCijfer >= 5.5) {
+                    System.out.println("Student " + inlogNaam + " is geslaagd voor " + examen);
+                } else {
+                    System.out.println("Student " + inlogNaam + " is gezakt voor " + examen);
 
-    public static void addWiskundeExamen() {
-        wiskundeVragen.add(new Vraag("vraag1: wat is 10 + 5", "15"));
-        wiskundeVragen.add(new Vraag("vraag2: wat is 5 + 112", "117"));
-        wiskundeVragen.add(new Vraag("vraag3: wat is 51 + 5", "56"));
-        wiskundeVragen.add(new Vraag("vraag4: wat is 75 + 54", "129"));
-        wiskundeVragen.add(new Vraag("vraag5: wat is 53 + 50", "103"));
-    }
+                }
+                System.out.println("Cijfer: " + eindCijfer);
+                Cijfer nieuwCijfer = new Cijfer(inlogNaam, studentNummer, examen.getExamen(), eindCijfer);
+                cijfer.Cijfers.add(nieuwCijfer);
 
-    public static void wiskundeExamen() {
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Je moet minimaal 3 vragen goed hebben voor een voldoende");
-        String examen = "Wiskunde";
-        double cijfer = 0;
-        for (Vraag vraag : wiskundeVragen) {
-            System.out.println(vraag.getVraag());
-            String antwoord = scanner.nextLine();
-            if (vraag.getVraag().equals(vraag.getVraag()) && antwoord.equals(vraag.getAntwoord())) {
-                System.out.println("Goed antwoordt");
-                cijfer = cijfer + 2;
-            } else {
-                System.out.println("Fout antwoordt");
             }
         }
-        if (cijfer >= 5.5) {
-            System.out.println("Student " + inlogNaam + " is geslaagd voor " + examen);
-        } else {
-            System.out.println("Student " + inlogNaam + " is gezakt voor " + examen);
-
-        }
-        System.out.println("Cijfer: " + cijfer);
-        Cijfers.add(new Cijfer(inlogNaam, studentNummer, examen, cijfer));
-    }
-    public static void addProgrammingExamen() {
-        programmingVragen.add(new Vraag("Welke datatype gebruik je om een naam op te slaan?", "String"));
-        programmingVragen.add(new Vraag("Welke datatype gebruik je om een leeftijd op te slaan?", "Int"));
-        programmingVragen.add(new Vraag("Welke datatype gebruik je om een logische voorwaarden op te slaan?", "Boolean"));
-        programmingVragen.add(new Vraag("Welke datatype gebruik je om meer dan 7 decimalen achter de komma op te slaan?", "Double"));
-        programmingVragen.add(new Vraag("Welke datatype gebruik je om meer dan 7 decimalen achter de komma op te slaan?", "Float"));
-    }
-    public static void programmingExamen() {
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Je moet minimaal 3 vragen goed hebben voor een voldoende");
-        String examen = "Programming";
-        double cijfer = 0;
-        for (Vraag vraag : programmingVragen) {
-            System.out.println(vraag.getVraag());
-            String antwoord = scanner.nextLine();
-            if (vraag.getVraag().equals(vraag.getVraag()) && antwoord.equalsIgnoreCase(vraag.getAntwoord())) {
-                System.out.println("Goed antwoordt");
-                cijfer = cijfer + 2;
-            } else {
-                System.out.println("Fout antwoordt");
-            }
-        }
-        if (cijfer >= 5.5) {
-            System.out.println("Student " + inlogNaam + " is geslaagd voor " + examen);
-        } else {
-            System.out.println("Student " + inlogNaam + " is gezakt voor " + examen);
-
-        }
-        System.out.println("Cijfer: " + cijfer);
-        Cijfers.add(new Cijfer(inlogNaam, studentNummer, examen, cijfer));
     }
 
-    public static void addExamenLijst() {
-        Examens.add(new Examen("Rekenexamen"));
-        Examens.add(new Examen("Wiskunde examen"));
-        Examens.add(new Examen("Programming examen"));
+    public void addExamenLijst() {
+        Examens.add(rekenen);
+        Examens.add(wiskunde);
+        Examens.add(programming);
+
     }
 
-    public static void examenLijst() {
-
+    public void examenLijst() {
         for (int i = 0; i < Examens.size(); i++) {
             System.out.println(i + 1 + ". " + Examens.get(i).getExamen());
         }

@@ -1,55 +1,34 @@
 package com.company;
 
-import java.util.Scanner;
-import static com.company.Examen.*;
 
-class Student extends Main {
-    private final String naam;
-    private final int nummer;
+import java.util.ArrayList;
+import java.util.Scanner;
+
+class Student {
+    private String naam;
+    private int nummer;
+    private static int uniekNummer = 21234567;
+    public ArrayList<Student> alleStudenten = new ArrayList<>();
 
     public Student(String naam, int studentenNummer) {
         this.naam = naam;
         this.nummer = studentenNummer;
+
     }
+
+    public Student() {
+
+    }
+
     public String getNaam() {
         return naam;
     }
+
     public int getNummer() {
         return nummer;
     }
 
-    public static void studentInloggen() {
-        Scanner scanner = new Scanner(System.in);
-        boolean unknown = true;
-        System.out.println("Wat is uw naam?");
-        inlogNaam = scanner.nextLine();
-        System.out.println("Wat is uw studentennummer?");
-        studentNummer = scanner.nextInt();
-        for (Student student : alleStudenten) {
-            if (inlogNaam.equals(student.naam) && (studentNummer == student.nummer)) {
-                unknown = false;
-                System.out.println("U wordt ingelogd");
-                examenLijst();
-                System.out.println("""
-                        Welke examen wilt u maken?
-                        Voer nummer in""");
-                int welkeExamen = scanner.nextInt();
-                if (welkeExamen == 1) {
-                    rekenExamen();
-                } else if (welkeExamen == 2) {
-                    wiskundeExamen();
-                } else if (welkeExamen == 3) {
-                    programmingExamen();
-                } else {
-                    System.out.println("Examen bestaat niet");
-                }
-            }
-        }
-        if (unknown) {
-            System.out.println("Ongeldige combinatie van naam en studentennummer!");
-        }
-    }
-    public static void studentVerwijderen() {
+    public void studentVerwijderen() {
         Scanner scanner = new Scanner(System.in);
         studentenLijst();
         System.out.println("Welke student wil je verwijderen?");
@@ -68,43 +47,24 @@ class Student extends Main {
             System.out.println("Ongeldige studentennummer");
         }
     }
-    public static void studentInschrijven() {
+
+    public void studentInschrijven() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Naam");
         String naam = scanner.nextLine();
-        int uniekNummer = 21234567;
         for (int i = 0; i < alleStudenten.size(); i++) {
             uniekNummer = uniekNummer + 1;
         }
-        alleStudenten.add(new Student(naam, uniekNummer));
+        Student student = new Student(naam, uniekNummer);
+        alleStudenten.add(student);
         System.out.println("Student " + naam + " is ingeschreven met studentennummer " + uniekNummer);
     }
-    public static void studentenLijst() {
+
+    public void studentenLijst() {
         for (int i = 0; i < alleStudenten.size(); i++) {
             System.out.println(i + 1 + ". " + alleStudenten.get(i).getNaam() + " | " + alleStudenten.get(i).nummer);
         }
     }
-    public static void studentGeslaagd() {
-        Scanner scanner = new Scanner(System.in);
-        studentenLijst();
-        System.out.println("Naam");
-        String student = scanner.nextLine();
-        System.out.println("Studentennummer");
-        int studentenNummer = scanner.nextInt();
-        if (Cijfers.size() == 0) {
-            System.out.println("Student " + student + " heeft geen examens gemaakt");
-        }
-        for (Cijfer cijfer : Cijfers) {
-            if (studentenNummer != cijfer.getStudentenNummer() || !student.equalsIgnoreCase(cijfer.getNaam())) {
-                System.out.println("Student " + student + " heeft geen examens gemaakt");
-            } else if (studentenNummer == cijfer.getStudentenNummer()) {
-                System.out.println("Student " + cijfer.getNaam() + " | " + cijfer.getStudentenNummer() + " heeft een " + cijfer.getCijfer() + " gehaald voor " + cijfer.getExamen());
-                if (cijfer.getCijfer() >= 5.5) {
-                    System.out.println("Geslaagd");
-                } else if (cijfer.getCijfer() < 5.5) {
-                    System.out.println("Gezakt");
-                }
-            }
-        }
-    }
 }
+
+
