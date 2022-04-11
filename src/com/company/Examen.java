@@ -13,24 +13,26 @@ class Examen {
     Cijfer cijfer = new Cijfer();
     Vraag vraag = new Vraag();
 
-    Examen rekenen = new Examen("Rekenen", vraag.rekenVragen);
-    Examen wiskunde = new Examen("Wiskunde",vraag.wiskundeVragen);
-    Examen programming = new Examen("Programming",vraag.programmingVragen);
+    private Examen rekenen;
+    private Examen wiskunde;
+    private Examen programming;
 
 
     public Examen(String examen, ArrayList<Vraag> examenVragen) {
         this.Examen = examen;
         this.examenVragen = examenVragen;
-    }
-
-    public Examen() {
-
+        rekenen = new Examen("Rekenen", vraag.rekenVragen);
+        wiskunde = new Examen("Wiskunde",vraag.wiskundeVragen);
+        programming = new Examen("Programming",vraag.programmingVragen);
     }
 
     public String getExamen() {
         return Examen;
 
     }
+
+    public Examen(){}
+
     public ArrayList<Vraag> getExamenVragen() {
         return examenVragen;
     }
@@ -96,6 +98,7 @@ class Examen {
     }
 
     public void addExamenLijst() {
+
         Examens.add(rekenen);
         Examens.add(wiskunde);
         Examens.add(programming);
