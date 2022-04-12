@@ -8,7 +8,7 @@ class Cijfer {
     private int studentenNummer;
     private String examen;
     private double cijfer;
-    public ArrayList<Cijfer> Cijfers = new ArrayList<>();
+    public static ArrayList<Cijfer> Cijfers = new ArrayList<>();
 
     Student student = new Student();
 

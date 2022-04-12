@@ -8,7 +8,7 @@ class Student {
     private String naam;
     private int nummer;
     private static int uniekNummer = 21234567;
-    public ArrayList<Student> alleStudenten = new ArrayList<>();
+    public static ArrayList<Student> alleStudenten = new ArrayList<>();
 
     public Student(String naam, int studentenNummer) {
         this.naam = naam;
