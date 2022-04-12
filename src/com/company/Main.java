@@ -1,11 +1,27 @@
 package com.company;
 
+import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
 
 public class Main {
+    static ArrayList<Examen> examens = new ArrayList<>();
+
+    static void examenLijst() {
+        for (int i = 0; i < examens.size(); i++) {
+            System.out.println(i + 1 + ". " + examens.get(i).getExamen());
+        }
+    }
+
     public static void main(String[] args) {
+
+        Examen rekenen = new Examen("Rekenen");
+        Examen wiskunde = new Examen("Wiskunde");
+        Examen programming = new Examen("Programming");
+        examens.add(rekenen);
+        examens.add(wiskunde);
+        examens.add(programming);
         Student student = new Student();
         Examen examen = new Examen();
         Cijfer cijfer = new Cijfer();
@@ -15,7 +31,7 @@ public class Main {
         vraag.addRekenExamenVragen();
         vraag.addWiskundeExamenVragen();
         vraag.addProgrammingExamenVragen();
-        examen.addExamenLijst();
+        //ExamenLijst.addExamenLijst();
         boolean nogEenKeer = true;
         do {
             try {
@@ -29,7 +45,7 @@ public class Main {
                     student.studentenLijst();
                 } else if (commandnummer == 2) {
                     System.out.println("Examenlijst");
-                    examen.examenLijst();
+                    examenLijst();
                     System.out.println("________________");
                 } else if (commandnummer == 3) {
                     System.out.println("Student inschrijven");
