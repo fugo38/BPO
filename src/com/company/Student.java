@@ -3,21 +3,31 @@ package com.company;
 
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.Arrays;
 
 class Student {
     private String naam;
     private int nummer;
     private static int uniekNummer = 21234567;
-    public static ArrayList<Student> alleStudenten = new ArrayList<>();
+    public static ArrayList<Student> alleStudenten = new ArrayList<Student>(
+            Arrays.asList(new Student("PieterJan", uniekNummer))
+    );
+    public int aantalExamens=0;
 
     public Student(String naam, int studentenNummer) {
         this.naam = naam;
         this.nummer = studentenNummer;
-
+        if(naam.equals("PieterJan")){
+            aantalExamens = 1;
+        }
     }
 
     public Student() {
 
+    }
+
+    public int getAantalExamens() {
+        return aantalExamens;
     }
 
     public String getNaam() {
@@ -63,6 +73,35 @@ class Student {
     public void studentenLijst() {
         for (int i = 0; i < alleStudenten.size(); i++) {
             System.out.println(i + 1 + ". " + alleStudenten.get(i).getNaam() + " | " + alleStudenten.get(i).nummer);
+        }
+    }
+    public static Student getStudentByName(String naam){
+        for(int i =0; i<alleStudenten.size();i++){
+            Student student = new Student();
+            if(alleStudenten.get(i).naam.equals(naam)){
+                student = alleStudenten.get(i);
+                return student;
+            }
+        }
+        return null;
+    }
+
+    public static void getMeesteExamens(){
+        int meestaantal = 0;
+        ArrayList<Student> MeestGemaakteExamensStudenten = new ArrayList<>();
+        for(int i =0; i<alleStudenten.size();i++){
+            if(alleStudenten.get(i).aantalExamens>meestaantal){
+                meestaantal = alleStudenten.get(i).aantalExamens;
+            }
+        }
+        for(int i =0; i<alleStudenten.size();i++){
+            if(alleStudenten.get(i).aantalExamens==meestaantal){
+                MeestGemaakteExamensStudenten.add(alleStudenten.get(i));
+            }
+        }
+        System.out.println("De student(en) met de meeste behaalde examens:");
+        for (Student student:MeestGemaakteExamensStudenten) {
+            System.out.println(student.naam+" heeft "+student.aantalExamens+" examens behaald.");
         }
     }
 }

@@ -62,7 +62,7 @@ public class Main {
                     System.out.println("________________");
                 } else if (commandnummer == 7) {
                     System.out.println("Welke student heeft de meeste examens gehaald?");
-                    cijfer.printCijfers();
+                    Student.getMeesteExamens();
                     System.out.println("________________");
                 } else if (commandnummer == 8) {
                     System.out.println("Het systeem wordt afgesloten");
@@ -90,12 +90,8 @@ public class Main {
             if (inlogNaam.equals(Student.alleStudenten.get(i).getNaam()) && (studentNummer == Student.alleStudenten.get(i).getNummer())) {
                 unknown = false;
                 System.out.println("U wordt ingelogd");
-                System.out.println("""
-                        Welke examen wilt u maken?
-                        1: rekenen
-                        2: wiskunde
-                        3: programeren
-                        Voer nummer in""");
+                System.out.println("Welke examen wilt u maken?" +
+                        " 1: rekenen 2: wiskunde 3: programeren Voer nummer in");
                 int welkeExamen = scanner.nextInt();
                 if (welkeExamen == 1) {
 
@@ -137,6 +133,8 @@ public class Main {
         }
         if (examen.getEindCijfer() >= 5.5) {
             System.out.println("Student " + inlogNaam + " is geslaagd voor " + examen);
+            Student student = Student.getStudentByName(inlogNaam);
+            student.aantalExamens++;
         } else {
             System.out.println("Student " + inlogNaam + " is gezakt voor " + examen);
 
