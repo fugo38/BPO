@@ -6,29 +6,6 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class CijferTest {
 
-//    @Test
-//    void printCijfers() {
-//    }
-//
-//    @Test
-//    void getNaam() {
-//    }
-//
-//    @Test
-//    void getStudentenNummer() {
-//    }
-//
-//    @Test
-//    void getExamen() {
-//    }
-//
-//    @Test
-//    void getCijfer() {
-//    }
-//
-//    @Test
-//    void testToString() {
-//    }
 
     @Test
     void getCijfers() {
@@ -38,7 +15,12 @@ class CijferTest {
         assertNotNull(cijfers);
     }
 
-//    @Test
-//    void cijfersResultaat() {
-//    }
+    @Test
+    void cijfersResultaat() {
+        Student student = new Student("hans", 21108731);
+        Cijfer cijfer1 = new Cijfer("Mehmet", 21108730, "rekenen", 8);
+        assertNull(student);
+        int studentenNummer = 21108730;
+
+    }
 }
