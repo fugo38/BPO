@@ -28,10 +28,8 @@ class Examen {
         return examen;
 
     }
-
+    // methode om te vragen van alle vragen die bij een bepaald examen hoort
     public ArrayList<Vraag> getExamenVragen() {
         return examenVragen;
     }
-
-
 }

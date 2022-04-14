@@ -30,6 +30,8 @@ public class Main {
         menu.addMenu();
         //ExamenLijst.addExamenLijst();
         boolean nogEenKeer = true;
+
+        //uitprinten van het menu, de gebruiker kan een nummer invoeren, en aan de hand van het ingevoerde getal roep je een specifieke functie aan
         do {
             try {
                 Scanner scanner = new Scanner(System.in);
@@ -78,6 +80,7 @@ public class Main {
         } while (nogEenKeer);
     }
 
+    //met deze methode kan een gebruiker kiezen tussen examens die de gebruiker wilt maken, en word de gekoze examen gestart
     static void runExamen() {
         Scanner scanner = new Scanner(System.in);
         boolean unknown = true;
@@ -117,6 +120,7 @@ public class Main {
 
     }
 
+    //alle antwoorden worden gecheckt en op het scherm komt er te staan of de vraag fout of goed is
     private static void checkAntwoorden(Examen examen, String inlogNaam, int studentNummer) {
         int i;
         Scanner scanner = new Scanner(System.in);
@@ -144,6 +148,7 @@ public class Main {
         Cijfer.Cijfers.add(nieuwCijfer);
     }
 
+    //opvragen van de vragen van het Rekenexamen
     public static ArrayList<Vraag> getRekenExamenVragen() {
 
 
@@ -158,6 +163,8 @@ public class Main {
         );
         return vragen;
     }
+
+    //opvragen van de vragen van het WiskundeExamen
     public static ArrayList<Vraag> addWiskundeExamenVragen() {
         ArrayList<Vraag> vragen = new ArrayList<>();
         Collections.addAll(
@@ -171,6 +178,8 @@ public class Main {
         return vragen;
 
     }
+
+    //opvragen van de vragen van het ProgrammingExamen
     public static ArrayList<Vraag> addProgrammingExamenVragen() {
         ArrayList<Vraag> vragen = new ArrayList<>();
         Collections.addAll(

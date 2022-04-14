@@ -6,6 +6,7 @@ class Menu {
 
     private ArrayList<String> Menu = new ArrayList<>();
 
+    //menu items toevoegen aan de Menu ArrayList
     public void addMenu() {
         Menu.add("Lijst met studenten");
         Menu.add("Lijst met examens");
@@ -16,6 +17,8 @@ class Menu {
         Menu.add("Welke student heeft de meeste examens gehaald?");
         Menu.add("Exit");
     }
+
+    //methode om alle items uit de ArrayList Menu op het scherm te printen
     public void printMenu(){
         for (int i = 0; i < Menu.size(); i++) {
             System.out.println(i + 1 + ". " + Menu.get(i));

@@ -9,17 +9,12 @@ class Student {
     private String naam;
     private int nummer;
     private static int uniekNummer = 21234567;
-    public static ArrayList<Student> alleStudenten = new ArrayList<Student>(
-            Arrays.asList(new Student("PieterJan", uniekNummer))
-    );
+    public static ArrayList<Student> alleStudenten = new ArrayList<Student>();
     public int aantalExamens=0;
 
     public Student(String naam, int studentenNummer) {
         this.naam = naam;
         this.nummer = studentenNummer;
-        if(naam.equals("PieterJan")){
-            aantalExamens = 1;
-        }
     }
 
     public Student() {
@@ -38,6 +33,7 @@ class Student {
         return nummer;
     }
 
+    //Verwijderen van de Student die door de gebruiker is aangegeven, naam van een student en de studentnummer die bij de aangegeven student hoort
     public void studentVerwijderen() {
         Scanner scanner = new Scanner(System.in);
         studentenLijst();
@@ -58,6 +54,7 @@ class Student {
         }
     }
 
+    // aan maken van een nieuw student, de gebruiker voert een naam in en er word automatisch een studentnummer aangemaakt
     public void studentInschrijven() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Naam");
@@ -70,11 +67,14 @@ class Student {
         System.out.println("Student " + naam + " is ingeschreven met studentennummer " + uniekNummer);
     }
 
+    //Opvragen van alle studenten in alleStudenten ArrayList
     public void studentenLijst() {
         for (int i = 0; i < alleStudenten.size(); i++) {
             System.out.println(i + 1 + ". " + alleStudenten.get(i).getNaam() + " | " + alleStudenten.get(i).nummer);
         }
     }
+
+    //opvragen van een specifieke student, die gekoppeld is aan de naam die is mee gegeven
     public static Student getStudentByName(String naam){
         for(int i =0; i<alleStudenten.size();i++){
             Student student = new Student();
@@ -86,6 +86,7 @@ class Student {
         return null;
     }
 
+    //Opvragen welk student de meeste examens heeft behaald
     public static void getMeesteExamens(){
         int meestaantal = 0;
         ArrayList<Student> MeestGemaakteExamensStudenten = new ArrayList<>();

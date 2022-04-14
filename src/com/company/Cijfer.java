@@ -23,6 +23,7 @@ class Cijfer {
 
     }
 
+    //
     public void printCijfers() {
         System.out.println(Cijfers);
     }
@@ -51,6 +52,7 @@ class Cijfer {
         return Cijfers;
     }
 
+    //print alle examens die de aangegeven student gehaald heeft, of gezakt is en de cijfer die hij/zij ervoor heeft gehaald
     public void cijfersResultaat() {
         Scanner scanner = new Scanner(System.in);
         student.studentenLijst();

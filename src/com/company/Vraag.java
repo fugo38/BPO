@@ -24,6 +24,8 @@ class Vraag {
         return antwoord;
     }
 
+
+    //check of het ingevoerde antwoord voor een vraag correct is
     public boolean check (String antwoord){
         return this.getAntwoord().toLowerCase(Locale.ROOT).equals(antwoord.toLowerCase(Locale.ROOT));
     }
